@@ -1,8 +1,8 @@
 ﻿using ControleFinanceiroNetCore.Models;
 using ControleFinanceiroNetCore.Services;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
 
 namespace ControleFinanceiroNetCore.Controllers
 {
@@ -16,20 +16,20 @@ namespace ControleFinanceiroNetCore.Controllers
         }
 
         // GET: Produto
-        public IActionResult Index()
+        public ActionResult<List<Produto>> Index()
         {
             return View(_produtoService.Get());
         }
 
         // GET: Produto/Details/5
-        public IActionResult Details(Guid id)
+        public ActionResult<Produto> Details(Guid id)
         {
             return View(_produtoService.Get(id));
         }
 
         // POST: Produto/Create
         [HttpPost]
-        public IActionResult Create([Bind]Produto produto)
+        public ActionResult<Produto> Create([Bind]Produto produto)
         {
             try
             {
@@ -45,11 +45,16 @@ namespace ControleFinanceiroNetCore.Controllers
 
         // POST: Produto/Edit/5
         [HttpPost]
-        public IActionResult Edit(Guid id, [Bind]Produto produto)
+        public IActionResult Edit(Guid id, [Bind]Produto produtoIn)
         {
             try
             {
-                _produtoService.Update(id, produto);
+                var produto = _produtoService.Get(id);
+
+                if (produto != null)
+                {
+                    _produtoService.Update(id, produtoIn);
+                }
 
                 return RedirectToAction(nameof(Index));
             }
@@ -65,7 +70,12 @@ namespace ControleFinanceiroNetCore.Controllers
         {
             try
             {
-                _produtoService.Remove(id);
+                var produto = _produtoService.Get(id);
+
+                if (produto != null)
+                {
+                    _produtoService.Remove(produto.Id);
+                }
 
                 return RedirectToAction(nameof(Index));
             }
