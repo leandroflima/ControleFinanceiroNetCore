@@ -1,0 +1,23 @@
+﻿@model ControleFinanceiroNetCore.Models.Produto
+
+@{
+    ViewData["Title"] = "Produtos";
+}
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Produto">
+            <label asp-for="Codigo" class="control-label"></label>
+            <label asp-for="Descricao" class="control-label"></label>
+            <label asp-for="Pontos" class="control-label"></label>
+            <br />
+            <div class="form-group">
+                <input type="submit" value="Produto" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
