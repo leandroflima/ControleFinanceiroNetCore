@@ -1,32 +1,47 @@
-﻿@model List<ControleFinanceiroNetCore.Models.Produto>
+﻿@model IEnumerable<ControleFinanceiroNetCore.Models.Produto>
 
 @{
-    ViewData["Title"] = "Produtos";
+    ViewData["Title"] = "Index";
 }
 
-<div class="row">
-    <div class="col-md-4">
-        <form method="post">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Código</th>
-                        <th>Descrição</th>
-                        <th>Pontos</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in Model)
-                    {
-                        <tr>
-                            <td>@Html.DisplayFor(modelItem => item.Codigo)</td>
-                            <td>@Html.DisplayFor(modelItem => item.Descricao)</td>
-                            <td>@Html.DisplayFor(modelItem => item.Pontos)</td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        </form>
-        <input type="submit" value="Adicionar" class="btn btn-primary" />
-    </div>
-</div>
+<h1>Lista</h1>
+
+<p>
+    <a asp-action="Create">Criar</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Codigo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Descricao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Pontos)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Codigo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descricao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pontos)
+            </td>
+            <td>
+                @Html.ActionLink("Alterar", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Detalhes", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Excluir", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
