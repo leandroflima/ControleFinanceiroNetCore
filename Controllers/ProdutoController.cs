@@ -24,13 +24,13 @@ namespace ControleFinanceiroNetCore.Controllers
         // GET: Produto/Details/5
         public ActionResult<Produto> Details(Guid id)
         {
-            var produto = _produtoService.Get(id);
-            if (produto == null)
+            var item = _produtoService.Get(id);
+            if (item == null)
             {
                 return NotFound();
             }
 
-            return View(produto);
+            return View(item);
         }
 
         // GET: Produto/Create
@@ -41,11 +41,11 @@ namespace ControleFinanceiroNetCore.Controllers
 
         // POST: Produto/Create
         [HttpPost]
-        public ActionResult<Produto> Create([Bind("Codigo,Descricao,Pontos")]Produto produto)
+        public ActionResult<Produto> Create([Bind("Codigo,Descricao,Pontos")]Produto item)
         {
             try
             {
-                _produtoService.Create(produto);
+                _produtoService.Create(item);
 
                 return RedirectToAction(nameof(Index));
             }
@@ -60,29 +60,29 @@ namespace ControleFinanceiroNetCore.Controllers
         // GET: Produto/Edit/5
         public IActionResult Edit(Guid id)
         {
-            var produto = _produtoService.Get(id);
-            if (produto == null)
+            var item = _produtoService.Get(id);
+            if (item == null)
             {
                 return NotFound();
             }
 
-            return View(produto);
+            return View(item);
         }
 
         // POST: Produto/Edit/5
         [HttpPost]
-        public IActionResult Edit(Guid id, [Bind("Id,Codigo,Descricao,Pontos")]Produto produtoIn)
+        public IActionResult Edit(Guid id, [Bind("Id,Codigo,Descricao,Pontos")]Produto itemIn)
         {
             try
             {
-                var produto = _produtoService.Get(id);
+                var item = _produtoService.Get(id);
 
-                if (produto == null)
+                if (item == null)
                 {
                     return NotFound();
                 }
 
-                _produtoService.Update(id, produtoIn);
+                _produtoService.Update(id, itemIn);
 
                 return RedirectToAction(nameof(Index));
             }
@@ -91,19 +91,19 @@ namespace ControleFinanceiroNetCore.Controllers
                 ModelState.AddModelError("", ex.Message);
             }
 
-            return View(produtoIn);
+            return View(itemIn);
         }
 
         // GET: Produto/Delete/5
         public IActionResult Delete(Guid id)
         {
-            var produto = _produtoService.Get(id);
-            if (produto == null)
+            var item = _produtoService.Get(id);
+            if (item == null)
             {
                 return NotFound();
             }
 
-            return View(produto);
+            return View(item);
         }
 
         // POST: Produto/Delete/5
@@ -112,10 +112,10 @@ namespace ControleFinanceiroNetCore.Controllers
         {
             try
             {
-                var produto = _produtoService.Get(id);
-                if (produto != null)
+                var item = _produtoService.Get(id);
+                if (item != null)
                 {
-                    _produtoService.Remove(produto.Id);
+                    _produtoService.Remove(item.Id);
                 }
 
                 return RedirectToAction(nameof(Index));

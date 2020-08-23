@@ -6,25 +6,25 @@ using System.Collections.Generic;
 
 namespace ControleFinanceiroNetCore.Controllers
 {
-    public class ClienteController : Controller
+    public class FornecedorController : Controller
     {
-        private readonly IClienteService _clienteService;
+        private readonly IFornecedorService _fornecedorService;
 
-        public ClienteController(IClienteService clienteService)
+        public FornecedorController(IFornecedorService fornecedorService)
         {
-            _clienteService = clienteService;
+            _fornecedorService = fornecedorService;
         }
 
-        // GET: Cliente
-        public ActionResult<List<Cliente>> Index()
+        // GET: fornecedor
+        public ActionResult<List<Fornecedor>> Index()
         {
-            return View(_clienteService.Get());
+            return View(_fornecedorService.Get());
         }
 
-        // GET: Cliente/Details/5
-        public ActionResult<Cliente> Details(Guid id)
+        // GET: fornecedor/Details/5
+        public ActionResult<Fornecedor> Details(Guid id)
         {
-            var item = _clienteService.Get(id);
+            var item = _fornecedorService.Get(id);
             if (item == null)
             {
                 return NotFound();
@@ -33,19 +33,19 @@ namespace ControleFinanceiroNetCore.Controllers
             return View(item);
         }
 
-        // GET: Cliente/Create
+        // GET: fornecedor/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Cliente/Create
+        // POST: fornecedor/Create
         [HttpPost]
-        public ActionResult<Cliente> Create([Bind("Nome,Documento,Endereco,Bairro,Cidade,Estado,TelefonePrincipal,TelefoneSecundario")]Cliente item)
+        public ActionResult<Fornecedor> Create([Bind("Nome,TelefonePrincipal")]Fornecedor item)
         {
             try
             {
-                _clienteService.Create(item);
+                _fornecedorService.Create(item);
 
                 return RedirectToAction(nameof(Index));
             }
@@ -57,10 +57,10 @@ namespace ControleFinanceiroNetCore.Controllers
             return View();
         }
 
-        // GET: Cliente/Edit/5
+        // GET: fornecedor/Edit/5
         public IActionResult Edit(Guid id)
         {
-            var item = _clienteService.Get(id);
+            var item = _fornecedorService.Get(id);
             if (item == null)
             {
                 return NotFound();
@@ -69,21 +69,20 @@ namespace ControleFinanceiroNetCore.Controllers
             return View(item);
         }
 
-        // POST: Cliente/Edit/5
+        // POST: fornecedor/Edit/5
         [HttpPost]
-        public IActionResult Edit(Guid id, 
-            [Bind("Id,Nome,Documento,Endereco,Bairro,Cidade,Estado,TelefonePrincipal,TelefoneSecundario")]Cliente itemIn)
+        public IActionResult Edit(Guid id, [Bind("Id,Nome,TelefonePrincipal")]Fornecedor itemIn)
         {
             try
             {
-                var item = _clienteService.Get(id);
+                var item = _fornecedorService.Get(id);
 
                 if (item == null)
                 {
                     return NotFound();
                 }
 
-                _clienteService.Update(id, itemIn);
+                _fornecedorService.Update(id, itemIn);
 
                 return RedirectToAction(nameof(Index));
             }
@@ -95,10 +94,10 @@ namespace ControleFinanceiroNetCore.Controllers
             return View(itemIn);
         }
 
-        // GET: Cliente/Delete/5
+        // GET: fornecedor/Delete/5
         public IActionResult Delete(Guid id)
         {
-            var item = _clienteService.Get(id);
+            var item = _fornecedorService.Get(id);
             if (item == null)
             {
                 return NotFound();
@@ -107,16 +106,16 @@ namespace ControleFinanceiroNetCore.Controllers
             return View(item);
         }
 
-        // POST: Cliente/Delete/5
+        // POST: fornecedor/Delete/5
         [HttpPost, ActionName("Delete")]
         public IActionResult DeleteConfirmed(Guid id)
         {
             try
             {
-                var item = _clienteService.Get(id);
+                var item = _fornecedorService.Get(id);
                 if (item != null)
                 {
-                    _clienteService.Remove(item.Id);
+                    _fornecedorService.Remove(item.Id);
                 }
 
                 return RedirectToAction(nameof(Index));
