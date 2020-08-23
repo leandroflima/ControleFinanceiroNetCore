@@ -1,5 +1,6 @@
 ﻿using ControleFinanceiroNetCore.Models.Enum;
 using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace ControleFinanceiroNetCore.Models
 {
@@ -9,6 +10,7 @@ namespace ControleFinanceiroNetCore.Models
 
         public Guid IdCliente { get; set; }
 
+        [Display(Name = "Situação")]
         public Situacoes Situacao { get; set; }
     }
 }

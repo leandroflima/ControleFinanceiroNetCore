@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace ControleFinanceiroNetCore.Models
 {
@@ -10,6 +11,7 @@ namespace ControleFinanceiroNetCore.Models
 
         public decimal Quantidade { get; set; }
 
+        [Display(Name = "Preço")]
         public decimal Preco { get; set; }
     }
 }
