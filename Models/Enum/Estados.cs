@@ -4,6 +4,7 @@ namespace ControleFinanceiroNetCore.Models.Enum
 {
     public enum Estados
     {
+        NaoDefinido = 0,
         [Description("Acre")]
         AC = 1,
         [Description("Alagoas")]

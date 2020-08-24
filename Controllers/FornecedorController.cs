@@ -45,9 +45,12 @@ namespace ControleFinanceiroNetCore.Controllers
         {
             try
             {
-                _fornecedorService.Create(item);
+                if (ModelState.IsValid)
+                {
+                    _fornecedorService.Create(item);
 
-                return RedirectToAction(nameof(Index));
+                    return RedirectToAction(nameof(Index));
+                }
             }
             catch (Exception ex)
             {
@@ -75,16 +78,19 @@ namespace ControleFinanceiroNetCore.Controllers
         {
             try
             {
-                var item = _fornecedorService.Get(id);
-
-                if (item == null)
+                if (ModelState.IsValid)
                 {
-                    return NotFound();
+                    var item = _fornecedorService.Get(id);
+
+                    if (item == null)
+                    {
+                        return NotFound();
+                    }
+
+                    _fornecedorService.Update(id, itemIn);
+
+                    return RedirectToAction(nameof(Index));
                 }
-
-                _fornecedorService.Update(id, itemIn);
-
-                return RedirectToAction(nameof(Index));
             }
             catch (Exception ex)
             {
@@ -112,13 +118,16 @@ namespace ControleFinanceiroNetCore.Controllers
         {
             try
             {
-                var item = _fornecedorService.Get(id);
-                if (item != null)
+                if (ModelState.IsValid)
                 {
-                    _fornecedorService.Remove(item.Id);
-                }
+                    var item = _fornecedorService.Get(id);
+                    if (item != null)
+                    {
+                        _fornecedorService.Remove(item.Id);
+                    }
 
-                return RedirectToAction(nameof(Index));
+                    return RedirectToAction(nameof(Index));
+                }
             }
             catch (Exception ex)
             {
