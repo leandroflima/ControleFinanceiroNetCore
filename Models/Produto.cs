@@ -5,11 +5,6 @@ namespace ControleFinanceiroNetCore.Models
 {
     public class Produto : BaseModel
     {
-        public Produto()
-        {
-            Id = Guid.NewGuid();
-        }
-
         [Required(ErrorMessage = MensagemObrigatoria)]
         [Range(0, 99999)]
         [Display(Name = "Código")]

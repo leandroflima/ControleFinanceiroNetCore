@@ -1,5 +1,5 @@
 ﻿using ControleFinanceiroNetCore.Models;
-using ControleFinanceiroNetCore.Models.Configuration;
+using ControleFinanceiroNetCore.Configuration;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;

@@ -1,4 +1,4 @@
-﻿namespace ControleFinanceiroNetCore.Models.Configuration
+﻿namespace ControleFinanceiroNetCore.Configuration
 {
     public class ControleFinanceiroDatabaseSettings : IControleFinanceiroDatabaseSettings
     {

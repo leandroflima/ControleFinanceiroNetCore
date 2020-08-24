@@ -1,4 +1,4 @@
-﻿using ControleFinanceiroNetCore.Models.Configuration;
+﻿using ControleFinanceiroNetCore.Configuration;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
